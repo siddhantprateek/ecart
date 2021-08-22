@@ -44,10 +44,15 @@ class App extends React.Component {
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route path="/shop" component={ShopPage}/>
-        <Route path="/signin" component={SignIn} render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignIn/>)}/>
+        <Route exact path="/signin" component={SignIn} render={() => this.props.currentUser ? (
+          <Redirect to="/" />) 
+          : 
+          (<SignIn/>
+          )}/>
       </Switch>
     </div>
-  );}
+  );
+  }
 }
 
 const mapStateToProps = ({ user }) =>({
@@ -58,4 +63,6 @@ const mapDispatchProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(mapStateToProps, mapDispatchProps)(App);
+export default connect(
+  mapStateToProps, 
+  mapDispatchProps)(App);
